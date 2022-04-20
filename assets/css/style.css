@@ -154,6 +154,20 @@ body {
 .appointment-form {
   padding: 50px 60px 70px 60px; }
 
+.data{
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 2px solid #ebebeb;
+  padding: 5px 0;
+  color: #222;
+  margin-bottom: 31px;
+  font-family: 'Roboto Slab'; }
+  input:focus, select:focus {
+    color: #222;
+    border-bottom: 2px solid #4966b1; 
+}
+
 input, select {
   width: 100%;
   display: block;

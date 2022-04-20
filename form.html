@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Booking Form</title>
-
-    <!-- Font Icon -->
     <link rel="stylesheet" href="assets/fonts/material-icon/css/material-design-iconic-font.min.css">
 
-    <!-- Main css -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -17,32 +14,37 @@
     <div class="main">
 
         <div class="container">
-            <form action="confirmation.html" method="POST" class="appointment-form" id="appointment-form">
+            <form action="" method="POST" class="appointment-form" id="appointment-form">
                 <h2>Session Booking Form</h2>
                 <p id="counselor"></p>
                 <div class="form-group-1">
                     <input type="text" name="name" id="name" placeholder="Username/Real Name" required />
                     <input type="text" name="student_id" id="sid" placeholder="Student ID" required />
                     <input type="number" name="phone_number" id="phone_number" placeholder="Phone number" required />
-                    <input type="text" name="title" id="title" placeholder="School/Institution" required />
-                    
-                </div>
-                <div class="form-group-2">
+                   <h3>School/Institution</h4> 
+                   <div class="select-list">
+                        <select name="school" id="school">
+                            <option selected value="Strathmore University">Strathmore </option>
+                            <option value="UON">UON</option>
+                        </select>
+                    </div>
                     <h3>How would you like to conduct your sessions?</h3>
                     <div class="select-list">
                         <select name="delivery" id="delivery">
-                            <option selected value="">Physical </option>
-                            <option value="by_email">Virtual</option>
+                            <option selected value="physical">Physical </option>
+                            <option value="virtual">Virtual</option>
                         </select>
                     </div>
+                </div>
+                <div class="form-group-2">
                     <h3>Which day of the week would you like to have your session?</h3>
                     <div class="select-list">
                         <select name="day" id="day">
-                            <option selected value="">Monday </option>
-                            <option value="tuesday">Tuesday</option>
-                            <option value="tuesday">Wednesday</option>
-                            <option value="tuesday">Thursday</option>
-                            <option value="tuesday">Friday</option>
+                            <option selected value="Monday">Monday </option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
                         </select>
                     </div>
                     <div class="select-list">
@@ -55,19 +57,48 @@
                     </div>
                 </div>
                 <div class="form-submit">
-                    <button type="submit" name="submit" id="submit" class="submit" value="Book Session"></button>
+                    <button type="submit" name="submit" id="submit" class="submit">Book Session</button>
                 </div>
             </form>
         </div>
+
+        <div class="container">
+            <form action="" method="post" class="appointment-form" id="confirmation">
+                <h2>Session Booking Confirmation Details</h2>
+               
+                <div class="form-group-1">
+                   
+                    <input id="username" type="text" value="" readonly />
+                    <input id="inst" type="text" value="" readonly />
+                    <input id="phone" type="number" value="" readonly />
+                    <input id="counselor_assigned" type="text" value="" readonly />
+                    <input id="app_day" type="text" value="" readonly />
+                    <input id="app_hour" type="text" value="" readonly />
+                    <input id="mode" type="text" value="" readonly />
+                    
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="submit"><a href="index.html">Back</a></button>
+                </div>
+            </form>
+        </div>
+
 
     </div>
 
     <!-- JS -->
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    
-    <script type="text/javascript"> $('#appointment-form').submit(function(event){
+    <script type="text/javascript">
+         $('#appointment-form').show(function(){
+        $('#confirmation').hide();
+    });
+
+     $('#appointment-form').submit(function(event){
             event.preventDefault();
-            
+            $('#appointment-form').hide();
+       
+
             var data=$('#appointment-form').serializeArray();
             var username= data[0].value;
             var student_id= data[1].value;
@@ -89,7 +120,7 @@
                 }else  if(hour=="15h-17h"){
                     counselor="Dr. Wairimu";
                 }
-            }else if(school=="Strathmore University"){
+            }else if(school=="UON"){
                 if(hour=="8h-10h"){
                     counselor="Dr. Otieno";
                 }else  if(hour=="10h-12h"){
@@ -102,11 +133,24 @@
             }else{
                 counselor= "wrong inputs";
             }
-            alert(counselor);
-            $('#counselor').append(counselor);
+            if(counselor=="wrong inputs")
+            {
+                alert("Invalid inputs, try again");}
+                else{
+                    alert("Booking successful");
+            }
+
+            $('#username').val(username);
+            $('#inst').val(school);
+            $('#phone').val(phone);
+            $('#counselor_assigned').val(counselor);
+            $('#app_day').val(day);
+            $('#app_hour').val(hour);
+            $('#mode').val(delivery);
+            $('#confirmation').show();
+            
             console.log(data);
             
-            return false;
           });</script>
 </body>
 </html>
