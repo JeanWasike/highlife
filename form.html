@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Booking Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="assets/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <form action="confirmation.html" method="POST" class="appointment-form" id="appointment-form">
+                <h2>Session Booking Form</h2>
+                <p id="counselor"></p>
+                <div class="form-group-1">
+                    <input type="text" name="name" id="name" placeholder="Username/Real Name" required />
+                    <input type="text" name="student_id" id="sid" placeholder="Student ID" required />
+                    <input type="number" name="phone_number" id="phone_number" placeholder="Phone number" required />
+                    <input type="text" name="title" id="title" placeholder="School/Institution" required />
+                    
+                </div>
+                <div class="form-group-2">
+                    <h3>How would you like to conduct your sessions?</h3>
+                    <div class="select-list">
+                        <select name="delivery" id="delivery">
+                            <option selected value="">Physical </option>
+                            <option value="by_email">Virtual</option>
+                        </select>
+                    </div>
+                    <h3>Which day of the week would you like to have your session?</h3>
+                    <div class="select-list">
+                        <select name="day" id="day">
+                            <option selected value="">Monday </option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="tuesday">Wednesday</option>
+                            <option value="tuesday">Thursday</option>
+                            <option value="tuesday">Friday</option>
+                        </select>
+                    </div>
+                    <div class="select-list">
+                        <select name="hour_appointment" id="hour_appointment">
+                            <option  selected value="8h-10h">Hours : 8 am - 10 am</option>
+                            <option value="10h-12h">Hours :10 am - 12 am</option>
+                            <option value="13h-15h">Hours : 1 pm - 3 pm</option>
+                            <option value="15h-17h">Hours :3 pm - 5 pm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" name="submit" id="submit" class="submit" value="Book Session"></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    
+    <script type="text/javascript"> $('#appointment-form').submit(function(event){
+            event.preventDefault();
+            
+            var data=$('#appointment-form').serializeArray();
+            var username= data[0].value;
+            var student_id= data[1].value;
+            var phone= data[2].value;
+            var school= data[3].value;
+            var delivery= data[4].value;
+            var day= data[5].value;
+            var hour= data[6].value;
+           
+            var counselor;
+    
+            if(school=="Strathmore University"){
+                if(hour=="8h-10h"){
+                    counselor="Dr. Otieno";
+                }else  if(hour=="10h-12h"){
+                    counselor="Dr. Mulindi";
+                }else  if(hour=="13h-15h"){
+                    counselor="Fr. Jude";
+                }else  if(hour=="15h-17h"){
+                    counselor="Dr. Wairimu";
+                }
+            }else if(school=="Strathmore University"){
+                if(hour=="8h-10h"){
+                    counselor="Dr. Otieno";
+                }else  if(hour=="10h-12h"){
+                    counselor="Dr. Mulindi";
+                }else  if(hour=="13h-15h"){
+                    counselor="Fr. Jude";
+                }else  if(hour=="15h-17h"){
+                    counselor="Dr. Wairimu";
+                }
+            }else{
+                counselor= "wrong inputs";
+            }
+            alert(counselor);
+            $('#counselor').append(counselor);
+            console.log(data);
+            
+            return false;
+          });</script>
+</body>
+</html>
